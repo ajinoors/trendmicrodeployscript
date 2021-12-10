@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ACTIVATIONURL='dsm://agents.workload.au-1.cloudone.trendmicro.com:443/'
-MANAGERURL='https://workload.au-1.cloudone.trendmicro.com:443'
+ACTIVATIONURL='dsm://agents.workload.sg-1.cloudone.trendmicro.com:443/'
+MANAGERURL='https://workload.sg-1.cloudone.trendmicro.com:443'
 CURLOPTIONS='--silent --tlsv1.2'
 linuxPlatform='';
 isRPM='';
@@ -45,7 +45,7 @@ echo Downloading agent package...
 if [[ $isRPM == 1 ]]; then package='agent.rpm'
     else package='agent.deb'
 fi
-curl -H "Agent-Version-Control: on" -L $MANAGERURL/software/agent/${runningPlatform}${majorVersion}/${archType}/$package?tenantID=14442 -o /tmp/$package $CURLOPTIONS
+curl -H "Agent-Version-Control: on" -L $MANAGERURL/software/agent/${runningPlatform}${majorVersion}/${archType}/$package?tenantID=3236 -o /tmp/$package $CURLOPTIONS
 
 echo Installing agent package...
 rc=1
@@ -70,5 +70,5 @@ echo Install the agent package successfully
 
 sleep 15
 /opt/ds_agent/dsa_control -r
-/opt/ds_agent/dsa_control -a $ACTIVATIONURL "tenantID:01C7EB88-F5CC-320A-A777-F4682C92AB18" "token:19E62D1B-19D1-2AAB-84E5-572F2F577F3E"
-# /opt/ds_agent/dsa_control -a dsm://agents.workload.au-1.cloudone.trendmicro.com:443/ "tenantID:01C7EB88-F5CC-320A-A777-F4682C92AB18" "token:19E62D1B-19D1-2AAB-84E5-572F2F577F3E"
+/opt/ds_agent/dsa_control -a $ACTIVATIONURL "tenantID:13DD00B3-32B1-426A-EE59-600810FE6B88" "token:039E97E9-AB2A-01CD-561A-0228EDB51CF9" "policyid:8"
+# /opt/ds_agent/dsa_control -a dsm://agents.workload.sg-1.cloudone.trendmicro.com:443/ "tenantID:13DD00B3-32B1-426A-EE59-600810FE6B88" "token:039E97E9-AB2A-01CD-561A-0228EDB51CF9" "policyid:8"
