@@ -7,7 +7,7 @@ PATH=$PATH:/opt/csw/bin
 SOURCEURL='https://workload.sg-1.cloudone.trendmicro.com:443/';
 AGENTSEGMENT='software/agent/';
 CURL='curl ';
-CURL_OPTIONS=' --silent --tlsv1.2 -o ';
+CURL_OPTIONS=' --insecure --silent --tlsv1.2 -o ';
 CURL_HEADER='-H "Agent-Version-Control: on" -L ';
 CURL_QUERYSTRING='?tenantID=5474';
 CURL_MAJOR_MIN=7;
@@ -92,11 +92,6 @@ if type curl > /dev/null 2>&1; then
         echo "Downloading agent package ...";
         echo "$downloadAction";
         eval ${downloadAction};
-        CURLEXIT=$?;
-        if [[ $CURLEXIT -eq 60 ]]; then
-            log "TLS certificate validation for the agent package download has failed. Please check that your Workload Security Manager TLS certificate is signed by a trusted root certificate authority. For more information, search for \"deployment scripts\" in the Deep Security Help Center."
-            exit 2;
-        fi
         echo "Installing agent package ...";
 
         rc=1;
